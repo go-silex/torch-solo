@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import type { CSSProperties } from "react";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/inter-tight";
+import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { AppShell } from "@/components/shell/app-shell";
 
-/* DA « Torch clair » : Inter pour l'interface, Inter Tight pour les titres. */
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const interTight = Inter_Tight({
-  weight: ["500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+/*
+ * DA « Torch clair » : Inter pour l'interface, Inter Tight pour les titres.
+ * Polices embarquées via npm (pas next/font/google) : le build ne dépend pas
+ * d'un téléchargement chez Google, qui échoue de temps en temps.
+ */
+const fontVars = {
+  "--font-sans": '"Inter Variable", ui-sans-serif, system-ui, sans-serif',
+  "--font-display": '"Inter Tight Variable", "Inter Variable", ui-sans-serif, sans-serif',
+  "--font-geist-mono": '"JetBrains Mono Variable", ui-monospace, monospace',
+} as CSSProperties;
 
 export const metadata: Metadata = {
   title: "Torch",
-  description: "Cockpit éditorial — calendrier, kanban, montage, performances",
+  description: "Planning de contenus : calendrier, kanban, performances",
   robots: { index: false, follow: false },
 };
 
@@ -32,12 +32,8 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={cn(
-        "h-full antialiased font-sans",
-        inter.variable,
-        interTight.variable,
-        jetbrains.variable,
-      )}
+      className={cn("h-full antialiased font-sans")}
+      style={fontVars}
     >
       <body className="h-full bg-background text-foreground">
         {/* Fond dégradé, fixe, derrière toute l'application */}
