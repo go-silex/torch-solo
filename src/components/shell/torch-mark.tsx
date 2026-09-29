@@ -1,0 +1,34 @@
+/** Marque Torch : squircle dégradé sky→peach, flamme blanche. */
+export function TorchMark({ size = 32 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="torch-bg" x1="6" y1="4" x2="42" y2="46">
+          <stop offset="0%" stopColor="#6B9FD4" />
+          <stop offset="55%" stopColor="#7D8FD0" />
+          <stop offset="100%" stopColor="#EB7457" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M24 2c14.5 0 22 7.5 22 22s-7.5 22-22 22S2 38.5 2 24 9.5 2 24 2Z"
+        fill="url(#torch-bg)"
+      />
+      <path
+        d="M24.6 10.5c.3 3.4 1.9 5.6 4.1 7.9 2.4 2.6 4.8 5.4 4.8 9.6 0 5.6-4.3 9.8-9.5 9.8s-9.5-4.1-9.5-9.7c0-2.9 1.2-5.2 2.8-7.2.4-.5 1.2-.3 1.4.3.3 1.1.8 2 1.6 2.7.2-4.7 1.9-9.5 3.4-13.2.2-.6 1-.7 1.3-.2Z"
+        fill="#FEFEFE"
+      />
+      <path
+        d="M24.1 30.2c1.9 0 3.4 1.5 3.4 3.5 0 2-1.5 3.6-3.4 3.6s-3.4-1.6-3.4-3.6c0-1.1.4-1.9 1-2.6.5-.5 1.4-.2 1.6.5l.1.3c.4-.7.5-1 .7-1.7Z"
+        fill="#EB7457"
+        opacity="0.9"
+      />
+    </svg>
+  );
+}

@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ============================================================
+   DA « Torch clair » (validée par Arman le 2026-09-21)
+   Surfaces blanches, filets fins, fond dégradé pêche → bleu très léger.
+   - une seule couleur de fond par surface : blanc ; le dégradé reste au fond
+   - la couleur ne sert qu'à dire un statut, un auteur ou un retard
+   - ombres minuscules (1 px) pour détacher une carte, jamais de halo
+   Les noms de tokens sont conservés (utilisés dans toute l'app), seules
+   leurs valeurs changent.
+   ============================================================ */
+:root {
+  --paper: #ffffff;
+  --paper-deep: #f7f8fa;
+  --mist: #eef1f5;
+  --sky: #3e7bc4;
+  --sky-soft: #b9cfe6;
+  --haze: #f2f5f9;
+  --silex-secondary: #2e5f9d;
+  --peach: #eb7457;
+  --peach-soft: #f5c3b1;
+  --bronze: #b8976e;
+  --ink: #101828;
+  --ink-soft: #475467;
+  --ink-mute: #98a2b3;
+  --late: #e5533d;
+
+  --hairline: rgba(16, 24, 40, 0.09);
+  --hairline-soft: rgba(16, 24, 40, 0.06);
+  --hairline-strong: rgba(16, 24, 40, 0.16);
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-hover: 0 4px 12px rgba(16, 24, 40, 0.08);
+
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: #667085;
+  --accent: rgba(62, 123, 196, 0.08);
+  --accent-foreground: var(--ink);
+  --destructive: var(--peach);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--sky);
+  --chart-1: var(--sky);
+  --chart-2: var(--peach);
+  --chart-3: var(--silex-secondary);
+  --chart-4: var(--sky-soft);
+  --chart-5: var(--bronze);
+  --radius: 0.625rem;
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-deep);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--sky);
+  --background: #fbfbfc;
+  --foreground: var(--ink);
+}
+
+/* ---------- Atmosphère « Torch clair » ---------- */
+
+/*
+ * Fond de page : blanc, réchauffé par deux voiles très légers (pêche en haut à
+ * droite, bleu en bas à gauche). Fixe : il ne défile pas avec le contenu.
+ */
+.app-ground {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 620px at 88% -8%, rgba(235, 116, 87, 0.13), transparent 62%),
+    radial-gradient(880px 700px at 2% 108%, rgba(46, 95, 157, 0.12), transparent 60%);
+}
+
+/* Label système : petites capitales espacées. */
+.micro-label {
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/*
+ * Barres de défilement claires même si le système est en thème sombre
+ * (sinon le rail « À planifier » sort en noir sur blanc).
+ */
+.scroll-light {
+  color-scheme: light;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 24, 40, 0.22) transparent;
+}
+.scroll-light::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-light::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-light::-webkit-scrollbar-thumb {
+  background: rgba(16, 24, 40, 0.18);
+  border-radius: 999px;
+  border: 2px solid var(--paper);
+}
+.scroll-light::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 24, 40, 0.3);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
